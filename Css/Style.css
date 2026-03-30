@@ -1,0 +1,599 @@
+/* =========================================
+   1. IMPORTAR FUENTES LOCALES
+========================================= */
+@font-face {
+    font-family: 'AvantGardeBook';
+    src: url('../Fuentes/ITCAvantGardeStd-Bk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CaslonSSK';
+    src: url('../Fuentes/caslonssk-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* =========================================
+   VARIABLES DE COLOR
+========================================= */
+:root {
+    --verde-1529: #3F4E40; 
+    --blanco: #FFFFFF;     
+    --dorado-hover: #D0BA8B; 
+}
+
+/* =========================================
+   RESETEO BÁSICO
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER (LOGO IZQUIERDA, MENÚ DERECHA)
+========================================= */
+.header-principal {
+    background-color: transparent; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px 100px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, padding 0.4s ease, transform 0.4s ease; 
+}
+
+.header-principal.scrolled {
+    background-color: var(--verde-1529); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    padding: 15px 100px; 
+    border-bottom: 1px solid transparent; 
+}
+
+.logo-container img {
+    width: 220px; 
+    height: auto; 
+    display: block;
+}
+
+.navegacion ul {
+    list-style: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.navegacion a {
+    text-decoration: none; 
+    color: var(--blanco); 
+    font-family: 'AvantGardeBook', sans-serif; 
+    font-size: 15px;
+    letter-spacing: 1px; 
+    transition: color 0.3s ease; 
+    text-transform: uppercase; 
+}
+
+.navegacion a:hover {
+    color: var(--dorado-hover); 
+}
+
+.separador {
+    color: var(--blanco);
+    font-size: 14px;
+    opacity: 0.7; 
+    user-select: none; 
+}
+
+/* =========================================
+   SECCIÓN HERO (IMAGEN DE FONDO)
+========================================= */
+.hero-principal {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../hero/CalleCarabobo.jpg');
+    background-size: cover; 
+    background-position: 50% 20%; 
+    background-repeat: no-repeat;
+    height: 85vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-contenido {
+    max-width: 800px; 
+}
+
+.hero-contenido h1 {
+    color: var(--blanco);
+    font-family: 'CaslonSSK', serif; 
+    font-size: 50px; 
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-contenido p {
+    color: var(--blanco);
+    font-family: 'CaslonSSK', serif; 
+    font-size: 22px; 
+    margin-bottom: 65px; 
+    line-height: 1.5;
+}
+
+.btn-reservas {
+    display: inline-block;
+    background-color: #A34A33; 
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 15px 40px;
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: 1px solid var(--dorado-hover); 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-reservas:hover {
+    background-color: var(--dorado-hover); 
+    color: #000; 
+}
+
+/* =========================================
+   SECCIÓN HISTORIA / CONCEPTO
+========================================= */
+.historia-principal {
+    background-color: #F4EFE6; 
+    padding: 180px 100px 100px 100px; 
+}
+
+.historia-contenedor {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 200px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.historia-imagen {
+    flex: 1; 
+}
+
+.historia-imagen img {
+    width: 150%; 
+    transform: scale(1.5); 
+    height: auto;
+    display: block;
+    margin: 0 auto; 
+}
+
+.historia-texto {
+    flex: 1; 
+    padding-left: 60px; 
+}
+
+.historia-texto h2 {
+    font-family: 'CaslonSSK', serif; 
+    font-size: 45px;
+    color: var(--verde-1529); 
+    margin-bottom: 30px;
+}
+
+.historia-texto p {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 17px;
+    color: #2C2C2C; 
+    line-height: 1.8; 
+    margin-bottom: 20px;
+    text-align: justify; 
+}
+
+/* =========================================
+   SECCIÓN MENÚ DESTACADO (PASARELA CON FLECHAS)
+========================================= */
+.menu-destacado {
+    background-color: var(--verde-1529); 
+    padding: 200px 0 120px 0; /* Aumentamos el padding superior a 200px */
+    overflow: hidden; 
+}
+
+.menu-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px; 
+}
+
+.titulo-menu {
+    font-family: 'CaslonSSK', serif;
+    font-size: 45px;
+    color: var(--dorado-hover); 
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+}
+
+/* --- NUEVO: Envoltura para las flechas --- */
+.envoltura-carrusel {
+    position: relative; /* Fundamental para que las flechas sepan dónde anclarse */
+}
+
+/* --- Diseño de las flechas --- */
+.flecha-carrusel {
+    position: absolute;
+    top: 45%; 
+    transform: translateY(-50%);
+    background-color: var(--dorado-hover);
+    color: var(--verde-1529);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flecha-carrusel:hover {
+    background-color: #F4EFE6; 
+}
+
+/* Flecha Izquierda (inicia oculta) */
+.flecha-carrusel.izq {
+    left: -20px;
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+/* Flecha Derecha (inicia visible) */
+.flecha-carrusel.der {
+    right: -20px;
+}
+
+/* Clases dinámicas controladas por JavaScript */
+.flecha-carrusel.izq.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.flecha-carrusel.der.oculta {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- Contenedor de la Pasarela --- */
+.carrusel-platillos {
+    display: flex;
+    gap: 50px; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    padding-bottom: 40px; 
+    scrollbar-width: none; 
+}
+
+.carrusel-platillos::-webkit-scrollbar {
+    display: none; 
+}
+
+/* --- Diseño de cada Tarjeta --- */
+.tarjeta-platillo {
+    flex: 0 0 350px; 
+    background-color: #F4EFE6; 
+    border-radius: 12px; 
+    scroll-snap-align: center; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+    overflow: hidden; 
+    
+    /* ANIMACIÓN DE ENTRADA: Inician invisibles y desplazadas a la izquierda */
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+}
+
+/* Cuando el JS les agrega esta clase, vuelven a su lugar */
+.tarjeta-platillo.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Mantenemos tu efecto hover, pero SOLO se activa si la tarjeta ya es visible */
+.tarjeta-platillo.visible:hover {
+    transform: translateY(-15px);
+}
+
+.tarjeta-platillo:hover {
+    transform: translateY(-15px);
+}
+
+.tarjeta-platillo img {
+    width: 100%;
+    height: 380px; 
+    object-fit: cover; 
+    object-position: center center; 
+}
+
+/* --- Textos dentro de la Tarjeta --- */
+.info-platillo {
+    padding: 30px;
+    text-align: center;
+}
+
+.info-platillo h3 {
+    font-family: 'CaslonSSK', serif;
+    font-size: 28px;
+    color: var(--verde-1529);
+    margin-bottom: 15px;
+}
+
+.info-platillo p {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 16px;
+    color: #2C2C2C;
+    line-height: 1.6;
+}
+
+/* =========================================
+   SECCIÓN EXPERIENCIAS
+========================================= */
+.experiencias-principal {
+    background-color: var(--blanco);
+    /* Mantenemos la separación de 200px arriba para que respire el diseño */
+    padding: 200px 100px 120px 100px; 
+}
+
+.titulo-experiencias {
+    font-family: 'CaslonSSK', serif;
+    font-size: 45px;
+    color: var(--verde-1529);
+    text-align: center;
+    margin-bottom: 80px;
+    letter-spacing: 2px;
+}
+
+/* --- Contenedor Principal de la Tarjeta --- */
+.tarjeta-evento {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto 60px auto;
+    
+    /* El borde que solicitaste, en el color dorado de la marca */
+    border: 1px solid var(--dorado-hover); 
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    background-color: var(--blanco);
+    
+    /* Configuración inicial para la animación de despliegue */
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Esta clase se agregará por JS cuando el usuario llegue a la zona */
+.tarjeta-evento.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Bloque Izquierdo (Terracota) --- */
+.evento-visual {
+    flex: 1; /* Ocupa la mitad del espacio */
+    background-color: #D25B30; /* El color exacto RGB 210, 91, 48 */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Separación entre las dos fotos */
+    justify-content: center;
+}
+
+.evento-visual img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --- Bloque Derecho (Textos) --- */
+.evento-texto {
+    flex: 1; 
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    
+    /* CAMBIO CLAVE 1: flex-start empuja el título hacia la parte de arriba */
+    justify-content: flex-start; 
+}
+
+.evento-texto h3 {
+    font-family: 'CaslonSSK', serif;
+    font-size: 35px;
+    color: #D25B30; 
+    
+    /* CAMBIO CLAVE 2: Aumentamos a 50px para dar ese gran salto antes de la historia */
+    margin-bottom: 50px; 
+}
+
+.evento-texto p {
+    font-family: 'CaslonSSK', serif;
+    font-style: italic; /* Letra en cursiva como pediste */
+    font-size: 20px;
+    color: #2C2C2C; /* Color normal oscuro para leer bien sobre blanco */
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* =========================================
+   SECCIÓN FOOTER
+========================================= */
+.footer-principal {
+    background-color: var(--verde-1529);
+    padding: 100px 100px 40px 100px;
+    color: var(--blanco);
+    overflow: hidden; 
+}
+
+/* --- Parte 1: Arriba --- */
+.footer-parte-1 {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    margin-bottom: 60px;
+    
+    /* Configuración de Animación */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.footer-mapa {
+    flex: 1.5; /* Hace que el mapa ocupe un poco más de ancho que los textos */
+}
+
+.footer-columna {
+    flex: 1;
+}
+
+.footer-columna h3 {
+    font-family: 'CaslonSSK', serif;
+    font-size: 26px;
+    color: var(--dorado-hover);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.footer-columna p {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #F4EFE6;
+    opacity: 0.8;
+}
+
+.redes-sociales {
+    margin-top: 25px;
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 18px;
+    letter-spacing: 5px;
+    color: var(--dorado-hover);
+    cursor: pointer;
+}
+
+/* --- Línea Divisoria --- */
+.footer-separador {
+    border: none;
+    border-top: 1px solid rgba(208, 186, 139, 0.3); /* Dorado semi-transparente */
+    margin-bottom: 50px;
+}
+
+/* --- Parte 2: Abajo --- */
+.footer-parte-2 {
+    text-align: center;
+    
+    /* Configuración de Animación con Retraso (Delay) */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.3s; /* ¡Esta es la clave para que entre después! */
+}
+
+.footer-parte-2 h2 {
+    font-family: 'CaslonSSK', serif;
+    font-size: 45px;
+    color: var(--dorado-hover);
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.footer-parte-2 p {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 13px;
+    color: #F4EFE6;
+    opacity: 0.5;
+    letter-spacing: 1px;
+}
+
+/* --- Clases para activar la animación con JS --- */
+.footer-parte-1.visible, 
+.footer-parte-2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Enlace Cliqueable de la Dirección --- */
+.enlace-mapa {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 15px;
+    color: var(--dorado-hover);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 5px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.enlace-mapa:hover {
+    color: var(--blanco);
+    transform: translateX(5px);
+}
+
+/* --- Íconos de Redes Sociales --- */
+.redes-sociales {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px; 
+    align-items: center;
+}
+
+/* Contenedor individual de cada ícono */
+.icono-red {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: transparent; 
+    transition: transform 0.3s ease, background-color 0.1s ease;
+}
+
+.icono-red img {
+    width: 25px; 
+    height: 25px;
+    object-fit: contain;
+    /* Hace que los íconos se vuelvan BLANCOS para contrastar con el verde */
+    filter: brightness(0) invert(1); 
+    transition: filter 0.1s ease;
+}
+
+/* Animación al pasar el mouse por encima (Hover) */
+.icono-red:hover {
+    transform: translateY(-5px);
+}
+
+/* Animación al hacer CLIC (Active) */
+.icono-red:active {
+    /* El fondo se vuelve dorado momentáneamente */
+    background-color: var(--dorado-hover); 
+    /* El botón se hunde un poquito */
+    transform: translateY(2px) scale(0.95); 
+}
+
+.icono-red:active img {
+    /* Al cliquear, el ícono blanco se vuelve oscuro para que se lea bien sobre el dorado */
+    filter: brightness(0) invert(0.1);
+}
