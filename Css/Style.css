@@ -96,7 +96,7 @@
    SECCIÓN HERO (IMAGEN DE FONDO)
 ========================================= */
 .hero-principal {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../hero/CalleCarabobo.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../Hero/CalleCarabobo.jpg');
     background-size: cover; 
     background-position: 50% 20%; 
     background-repeat: no-repeat;
