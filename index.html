@@ -9,27 +9,31 @@
 </head>
 <body>
     
-    <header class="header-principal">
-        
-        <div class="logo-container">
-            <a href="#inicio">
-                <img src="Logo/LogoSinFondo.png" alt="Logo 1529 Gastrobar">
-            </a>
-        </div>
-        
-        <nav class="navegacion">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li class="separador">|</li>
-                <li><a href="#menu">Menú</a></li>
-                <li class="separador">|</li>
-                <li><a href="#reservas">Reservas</a></li>
-                <li class="separador">|</li>
-                <li><a href="#experiencia">Experiencia</a></li>
-            </ul>
-        </nav>
-        
-    </header>
+<header class="header-principal">
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <div class="logo-container">
+        <a href="#">
+            <img src="Logo/LogoSinFondo.png" alt="Logo 1529 Gastrobar"> 
+        </a>
+    </div>
+    
+    <nav class="navegacion">
+        <ul>
+            <li><a href="#">INICIO</a></li>
+            <span class="separador">|</span>
+            <li><a href="#">MENÚ</a></li>
+            <span class="separador">|</span>
+            <li><a href="#">RESERVAS</a></li>
+            <span class="separador">|</span>
+            <li><a href="#">EXPERIENCIA</a></li>
+        </ul>
+    </nav>
+</header>
 
     <section class="hero-principal">
         <div class="hero-contenido">
@@ -250,8 +254,16 @@
         }, { threshold: 0.2 }); // El 0.2 significa que se activa al ver el 20% de la tarjeta
 
         // Le decimos al observador que vigile todas las tarjetas de eventos
+        // Y A LA VEZ le agregamos la función del clic para que giren en móvil
         tarjetasEvento.forEach(tarjeta => {
             observadorExperiencias.observe(tarjeta);
+            
+            // Evento de clic para el giro 3D
+            tarjeta.addEventListener('click', function() {
+                if (window.innerWidth < 768) {
+                    this.classList.toggle('is-flipped');
+                }
+            });
         });
 
         
@@ -321,7 +333,17 @@
         partesFooter.forEach(parte => {
             observadorFooter.observe(parte);
         });
-    
+
+        
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.navegacion');
+
+        if(mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('activo');
+            });
+        }
+   
     </script>
 
 </body>

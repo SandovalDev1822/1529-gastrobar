@@ -16,25 +16,29 @@
 }
 
 /* =========================================
-   VARIABLES DE COLOR
+   VARIABLES DE COLOR Y RESETEO
 ========================================= */
 :root {
     --verde-1529: #3F4E40; 
     --blanco: #FFFFFF;     
     --dorado-hover: #D0BA8B; 
+    --hueso-fondo: #F4EFE6;
+    --hueso-tarjeta: #F7F4F0;
 }
 
-/* =========================================
-   RESETEO BÁSICO
-========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Aplicamos el color hueso a toda la página */
+body {
+    background-color: var(--hueso-fondo);
+}
+
 /* =========================================
-   HEADER (LOGO IZQUIERDA, MENÚ DERECHA)
+   HEADER Y NAVEGACIÓN (ESCRITORIO / PC)
 ========================================= */
 .header-principal {
     background-color: transparent; 
@@ -42,40 +46,59 @@
     display: flex;
     justify-content: space-between; 
     align-items: center; 
-    padding: 20px 100px; 
+    
+    /* REDUCIMOS EL PADDING (5px arriba/abajo, 100px a los lados) */
+    padding: 5px 100px; 
+    
+    /* FORZAMOS UNA ALTURA MÁXIMA PARA LA BARRA */
+    max-height: 75px; 
+    
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000; 
-    transition: background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, padding 0.4s ease, transform 0.4s ease; 
+    transition: all 0.4s ease; 
 }
 
 .header-principal.scrolled {
     background-color: var(--verde-1529); 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
-    padding: 15px 100px; 
+    padding: 5px 100px; 
+    max-height: 70px; /* Un poco más delgada al hacer scroll */
     border-bottom: 1px solid transparent; 
 }
 
 .logo-container img {
-    width: 220px; 
-    height: auto; 
+    /* CONTROLAMOS EL TAMAÑO DEL LOGO PARA QUE NO EXPANDA EL MENÚ */
+    max-height: 55px; /* Limita la altura del logo */
+    width: auto;      /* El ancho se ajusta solo para no deformarse */
     display: block;
+}
+
+/* BLINDAJE PC: Obligamos a que el menú siempre esté visible y posicionado normal */
+.navegacion {
+    display: block !important; 
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background-color: transparent !important;
 }
 
 .navegacion ul {
     list-style: none; 
-    display: flex; 
+    display: flex !important; 
+    flex-direction: row !important;
     align-items: center; 
     gap: 15px; 
+    padding: 0 !important;
 }
 
 .navegacion a {
     text-decoration: none; 
     color: var(--blanco); 
     font-family: 'AvantGardeBook', sans-serif; 
-    font-size: 15px;
+    font-size: 13px; 
     letter-spacing: 1px; 
     transition: color 0.3s ease; 
     text-transform: uppercase; 
@@ -90,10 +113,28 @@
     font-size: 14px;
     opacity: 0.7; 
     user-select: none; 
+    display: inline-block !important; /* Asegura que el separador se vea en PC */
+}
+
+/* Botón Hamburguesa (Oculto en PC estrictamente) */
+.menu-toggle {
+    display: none !important; 
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 1100;
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background-color: var(--dorado-hover); 
+    transition: all 0.3s ease;
+    border-radius: 2px;
 }
 
 /* =========================================
-   SECCIÓN HERO (IMAGEN DE FONDO)
+   SECCIÓN HERO
 ========================================= */
 .hero-principal {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../Hero/CalleCarabobo.jpg');
@@ -106,10 +147,6 @@
     align-items: center;
     text-align: center;
     padding: 0 20px;
-}
-
-.hero-contenido {
-    max-width: 800px; 
 }
 
 .hero-contenido h1 {
@@ -147,10 +184,10 @@
 }
 
 /* =========================================
-   SECCIÓN HISTORIA / CONCEPTO
+   SECCIÓN HISTORIA
 ========================================= */
 .historia-principal {
-    background-color: #F4EFE6; 
+    background-color: transparent; 
     padding: 180px 100px 100px 100px; 
 }
 
@@ -163,9 +200,8 @@
     margin: 0 auto; 
 }
 
-.historia-imagen {
-    flex: 1; 
-}
+.historia-imagen { flex: 1; }
+.historia-texto { flex: 1; padding-left: 60px; }
 
 .historia-imagen img {
     width: 150%; 
@@ -173,11 +209,6 @@
     height: auto;
     display: block;
     margin: 0 auto; 
-}
-
-.historia-texto {
-    flex: 1; 
-    padding-left: 60px; 
 }
 
 .historia-texto h2 {
@@ -197,11 +228,11 @@
 }
 
 /* =========================================
-   SECCIÓN MENÚ DESTACADO (PASARELA CON FLECHAS)
+   NUESTRA PROPUESTA (MENÚ DESTACADO)
 ========================================= */
 .menu-destacado {
     background-color: var(--verde-1529); 
-    padding: 200px 0 120px 0; 
+    padding: 100px 0 80px 0; 
     overflow: hidden; 
 }
 
@@ -216,16 +247,12 @@
     font-size: 45px;
     color: var(--dorado-hover); 
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px; 
     letter-spacing: 2px;
 }
 
-/* --- Envoltura para las flechas --- */
-.envoltura-carrusel {
-    position: relative; 
-}
+.envoltura-carrusel { position: relative; }
 
-/* --- Diseño de las flechas --- */
 .flecha-carrusel {
     position: absolute;
     top: 45%; 
@@ -239,41 +266,18 @@
     font-size: 24px;
     cursor: pointer;
     z-index: 10;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.flecha-carrusel:hover { background-color: var(--hueso-fondo); }
+.flecha-carrusel.izq { left: -20px; opacity: 0; pointer-events: none; }
+.flecha-carrusel.der { right: -20px; }
+.flecha-carrusel.izq.visible { opacity: 1; pointer-events: auto; }
+.flecha-carrusel.der.oculta { opacity: 0; pointer-events: none; }
 
-.flecha-carrusel:hover {
-    background-color: #F4EFE6; 
-}
-
-/* Flecha Izquierda (inicia oculta) */
-.flecha-carrusel.izq {
-    left: -20px;
-    opacity: 0; 
-    pointer-events: none; 
-}
-
-/* Flecha Derecha (inicia visible) */
-.flecha-carrusel.der {
-    right: -20px;
-}
-
-/* Clases dinámicas controladas por JavaScript */
-.flecha-carrusel.izq.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.flecha-carrusel.der.oculta {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* --- Contenedor de la Pasarela --- */
 .carrusel-platillos {
     display: flex;
     gap: 50px; 
@@ -282,15 +286,11 @@
     padding-bottom: 40px; 
     scrollbar-width: none; 
 }
+.carrusel-platillos::-webkit-scrollbar { display: none; }
 
-.carrusel-platillos::-webkit-scrollbar {
-    display: none; 
-}
-
-/* --- Diseño de cada Tarjeta --- */
 .tarjeta-platillo {
     flex: 0 0 350px; 
-    background-color: #F4EFE6; 
+    background-color: var(--hueso-fondo); 
     border-radius: 12px; 
     scroll-snap-align: center; 
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
@@ -299,40 +299,22 @@
     transform: translateX(-100px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
 }
-
-.tarjeta-platillo.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.tarjeta-platillo.visible:hover {
-    transform: translateY(-15px);
-}
-
-.tarjeta-platillo:hover {
-    transform: translateY(-15px);
-}
+.tarjeta-platillo.visible { opacity: 1; transform: translateX(0); }
+.tarjeta-platillo.visible:hover { transform: translateY(-15px); }
 
 .tarjeta-platillo img {
     width: 100%;
     height: 380px; 
     object-fit: cover; 
-    object-position: center center; 
 }
 
-/* --- Textos dentro de la Tarjeta --- */
-.info-platillo {
-    padding: 30px;
-    text-align: center;
-}
-
+.info-platillo { padding: 30px; text-align: center; }
 .info-platillo h3 {
     font-family: 'CaslonSSK', serif;
     font-size: 28px;
     color: var(--verde-1529);
     margin-bottom: 15px;
 }
-
 .info-platillo p {
     font-family: 'AvantGardeBook', sans-serif;
     font-size: 16px;
@@ -344,8 +326,8 @@
    SECCIÓN EXPERIENCIAS
 ========================================= */
 .experiencias-principal {
-    background-color: var(--blanco);
-    padding: 200px 100px 120px 100px; 
+    background-color: transparent; 
+    padding: 120px 100px; 
 }
 
 .titulo-experiencias {
@@ -353,11 +335,10 @@
     font-size: 45px;
     color: var(--verde-1529);
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     letter-spacing: 2px;
 }
 
-/* --- Contenedor Principal de la Tarjeta --- */
 .tarjeta-evento {
     display: flex;
     max-width: 1400px;
@@ -366,18 +347,13 @@
     border-radius: 12px;
     overflow: hidden; 
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-    background-color: var(--blanco);
+    background-color: var(--hueso-tarjeta); 
     opacity: 0;
     transform: translateY(60px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+.tarjeta-evento.visible { opacity: 1; transform: translateY(0); }
 
-.tarjeta-evento.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- Bloque Izquierdo (Terracota) --- */
 .evento-visual {
     flex: 1; 
     background-color: #D25B30; 
@@ -387,7 +363,6 @@
     gap: 20px; 
     justify-content: center;
 }
-
 .evento-visual img {
     width: 100%;
     height: 240px;
@@ -396,22 +371,22 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* --- Bloque Derecho (Textos) --- */
 .evento-texto {
     flex: 1; 
     padding: 60px 50px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
+    
+    /* CAMBIO DE COLOR A #F7F4F0 */
+    background-color: #F7F4F0; 
 }
-
 .evento-texto h3 {
     font-family: 'CaslonSSK', serif;
     font-size: 35px;
     color: #D25B30; 
-    margin-bottom: 50px; 
+    margin-bottom: 40px; 
 }
-
 .evento-texto p {
     font-family: 'CaslonSSK', serif;
     font-style: italic; 
@@ -432,7 +407,6 @@
     overflow: hidden; 
 }
 
-/* --- Parte 1: Arriba --- */
 .footer-parte-1 {
     display: flex;
     justify-content: space-between;
@@ -443,13 +417,8 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.footer-mapa {
-    flex: 1.5; 
-}
-
-.footer-columna {
-    flex: 1;
-}
+.footer-mapa { flex: 1.5; }
+.footer-columna { flex: 1; }
 
 .footer-columna h3 {
     font-family: 'CaslonSSK', serif;
@@ -458,24 +427,21 @@
     margin-bottom: 25px;
     letter-spacing: 1px;
 }
-
 .footer-columna p {
     font-family: 'AvantGardeBook', sans-serif;
     font-size: 15px;
     margin-bottom: 8px;
     line-height: 1.6;
-    color: #F4EFE6;
+    color: var(--hueso-fondo);
     opacity: 0.8;
 }
 
-/* --- Línea Divisoria --- */
 .footer-separador {
     border: none;
     border-top: 1px solid rgba(208, 186, 139, 0.3); 
     margin-bottom: 50px;
 }
 
-/* --- Parte 2: Abajo --- */
 .footer-parte-2 {
     text-align: center;
     opacity: 0;
@@ -483,7 +449,6 @@
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     transition-delay: 0.3s; 
 }
-
 .footer-parte-2 h2 {
     font-family: 'CaslonSSK', serif;
     font-size: 45px;
@@ -492,23 +457,17 @@
     margin-bottom: 30px;
     text-transform: uppercase;
 }
-
 .footer-parte-2 p {
     font-family: 'AvantGardeBook', sans-serif;
     font-size: 13px;
-    color: #F4EFE6;
+    color: var(--hueso-fondo);
     opacity: 0.5;
     letter-spacing: 1px;
 }
 
-/* --- Clases para activar la animación con JS --- */
 .footer-parte-1.visible, 
-.footer-parte-2.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.footer-parte-2.visible { opacity: 1; transform: translateY(0); }
 
-/* --- Enlace Cliqueable de la Dirección --- */
 .enlace-mapa {
     font-family: 'AvantGardeBook', sans-serif;
     font-size: 15px;
@@ -516,163 +475,151 @@
     text-decoration: none;
     display: inline-block;
     margin-top: 5px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
 }
+.enlace-mapa:hover { color: var(--blanco); transform: translateX(5px); }
 
-.enlace-mapa:hover {
-    color: var(--blanco);
-    transform: translateX(5px);
-}
-
-/* --- Íconos de Redes Sociales --- */
-.redes-sociales {
-    margin-top: 25px;
-    display: flex;
-    gap: 15px; 
-    align-items: center;
-}
-
+.redes-sociales { margin-top: 25px; display: flex; gap: 15px; align-items: center; }
 .icono-red {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background-color: transparent; 
-    transition: transform 0.3s ease, background-color 0.1s ease;
+    display: flex; justify-content: center; align-items: center;
+    width: 45px; height: 45px; border-radius: 50%;
+    transition: all 0.3s ease;
 }
+.icono-red img { width: 25px; height: 25px; object-fit: contain; filter: brightness(0) invert(1); transition: filter 0.1s ease; }
+.icono-red:hover { transform: translateY(-5px); }
+.icono-red:active { background-color: var(--dorado-hover); transform: translateY(2px) scale(0.95); }
+.icono-red:active img { filter: brightness(0) invert(0.1); }
 
-.icono-red img {
-    width: 25px; 
-    height: 25px;
-    object-fit: contain;
-    filter: brightness(0) invert(1); 
-    transition: filter 0.1s ease;
-}
-
-.icono-red:hover {
-    transform: translateY(-5px);
-}
-
-.icono-red:active {
-    background-color: var(--dorado-hover); 
-    transform: translateY(2px) scale(0.95); 
-}
-
-.icono-red:active img {
-    filter: brightness(0) invert(0.1);
-}
 
 /* =========================================
-   DISEÑO RESPONSIVE (TABLETS Y TELÉFONOS)
+   DISEÑO RESPONSIVE Y ANIMACIÓN DE GIRO 
+   PARA MÓVILES (hasta 768px) 
 ========================================= */
-
-/* --- PARA PANTALLAS MEDIANAS (TABLETS - hasta 1024px) --- */
-@media screen and (max-width: 1024px) {
-    .header-principal, 
-    .header-principal.scrolled {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    .historia-principal, 
-    .experiencias-principal, 
-    .footer-principal {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    
-    .historia-contenedor {
-        gap: 50px;
-    }
-    .historia-imagen img {
-        transform: scale(1.1); 
-    }
-}
-
-/* --- PARA TELÉFONOS (hasta 768px) --- */
 @media screen and (max-width: 768px) {
     
-    /* 1. HEADER Y NAVEGACIÓN */
-    .header-principal {
-        flex-direction: column; 
-        padding: 15px 20px;
-        gap: 15px;
-    }
-    .header-principal.scrolled {
-        padding: 10px 20px;
-    }
-    .navegacion ul {
-        flex-wrap: wrap; 
-        justify-content: center;
-    }
+    /* Adaptaciones de las secciones anteriores (Nav, Hero, etc. que ya tenías) */
+    .header-principal { flex-direction: column; padding: 15px 20px; gap: 15px; }
+    .header-principal.scrolled { padding: 10px 20px; }
+    .navegacion ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .navegacion a { font-size: 11px; }
 
-    /* 2. HERO PRINCIPAL */
-    .hero-contenido h1 {
-        font-size: 32px; 
-    }
-    .hero-contenido p {
-        font-size: 18px;
-        margin-bottom: 40px;
-    }
+    .hero-contenido h1 { font-size: 32px; }
+    .hero-contenido p { font-size: 18px; margin-bottom: 40px; }
 
-    /* 3. HISTORIA (Poner imagen arriba y texto abajo) */
-    .historia-principal {
-        padding-top: 100px;
-        padding-bottom: 50px;
-    }
-    .historia-contenedor {
-        flex-direction: column; 
-        gap: 30px;
-    }
-    .historia-texto {
-        padding-left: 0; 
-        text-align: center;
-    }
-    .historia-imagen img {
-        width: 80%; 
-        transform: none; 
-    }
+    .historia-principal { padding-top: 100px; padding-bottom: 50px; }
+    .historia-contenedor { flex-direction: column; gap: 30px; }
+    .historia-texto { padding-left: 0; text-align: center; }
+    .historia-texto h2 { font-size: 30px; margin-bottom: 20px; }
+    .historia-imagen img { width: 80%; transform: none; }
 
-    /* 4. MENÚ DESTACADO (Carrusel) */
-    .menu-destacado {
-        padding-top: 80px;
-        padding-bottom: 60px;
-    }
-    .tarjeta-platillo {
-        flex: 0 0 280px; 
-    }
-    .flecha-carrusel {
-        display: none; 
-    }
+    .menu-destacado { padding-top: 80px; padding-bottom: 60px; }
+    .titulo-menu { font-size: 30px; margin-bottom: 30px; }
+    .tarjeta-platillo { flex: 0 0 280px; }
+    .flecha-carrusel { display: none; }
+    .info-platillo h3 { font-size: 24px; }
 
-    /* 5. EXPERIENCIAS */
+    /* ========================================================
+       ANIMACIÓN DE GIRO DE TARJETA (Nuestras Experiencias)
+       ======================================================== */
     .experiencias-principal {
         padding-top: 80px;
         padding-bottom: 60px;
-    }
-    .tarjeta-evento {
-        flex-direction: column; 
-    }
-    .evento-visual {
-        padding: 20px;
-    }
-    .evento-texto {
-        padding: 30px 20px;
-    }
-    .evento-texto h3 {
-        margin-bottom: 20px;
+        /* IMPORTANTE: Reducimos padding lateral para dar espacio a la tarjeta */
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    /* 6. FOOTER */
-    .footer-parte-1 {
-        flex-direction: column; 
-        gap: 40px;
+    .titulo-experiencias { font-size: 30px; margin-bottom: 40px; }
+
+    /* 1. Contenedor Principal: Actúa como la "escena" 3D */
+    .tarjeta-evento {
+        display: block; /* Quitamos flexbox para que las caras se superpongan */
+        position: relative;
+        perspective: 1000px; /* Crucial para el efecto 3D */
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        
+        /* Forzamos una altura para que la tarjeta no colapse */
+        /* Ajusta esta altura si tu texto es más largo */
+        height: 480px; 
+        
+        transition: transform 0.6s;
+        transform-style: preserve-3d; /* Hace que los hijos mantengan el 3D */
     }
-    .footer-principal {
-        padding-top: 60px;
+
+    /* Clase que activa el giro (se pone con el Script) */
+    .tarjeta-evento.is-flipped {
+        transform: rotateY(180deg);
     }
-    .redes-sociales {
-        justify-content: center; 
+
+    /* 2. Estilos comunes para ambas caras (Imágenes y Texto) */
+    .evento-visual, 
+    .evento-texto {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        
+        backface-visibility: hidden; /* ¡SÚPER IMPORTANTE! Esconde la parte trasera de la cara */
+        
+        border-radius: 12px;
+        border: 1px solid var(--dorado-hover); /* Re-aplicamos estilo desktop */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); /* Re-aplicamos estilo desktop */
     }
+
+    /* 3. Cara Delantera (Imágenes de Evento) */
+    .evento-visual {
+        transform: rotateY(0deg); /* Cara delantera */
+        background-color: #D25B30; /* Fondo terracota */
+        padding: 20px;
+        display: grid; /* Mantenemos grid para las imágenes en móvil */
+        grid-template-rows: 1fr 1fr;
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .evento-visual img {
+        height: calc(100% - 10px); /* Ajuste de altura imágenes */
+        width: auto;
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* 4. Cara Trasera (Texto Largo) */
+    .evento-texto {
+        background-color: #F7F4F0; /* Fondo hueso solicitado para móvil */
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centramos el texto verticalmente */
+        align-items: center;
+        text-align: center;
+        
+        transform: rotateY(180deg); /* Inicia girada (detrás) */
+    }
+    
+    .evento-texto h3 {
+        font-size: 26px; /* Ajuste tamaño título trasero */
+        margin-bottom: 20px;
+        color: #D25B30;
+    }
+    
+    .evento-texto p {
+        font-size: 16px; /* Ajuste tamaño texto trasero */
+        font-style: italic;
+        color: #2C2C2C;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* Adaptaciones del Footer que ya tenías */
+    .footer-parte-1 { flex-direction: column; gap: 40px; }
+    .footer-principal { padding-top: 60px; }
+    .redes-sociales { justify-content: center; }
 }
