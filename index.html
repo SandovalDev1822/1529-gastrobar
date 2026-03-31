@@ -9,31 +9,27 @@
 </head>
 <body>
     
-<header class="header-principal">
-    <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
-
-    <div class="logo-container">
-        <a href="#">
-            <img src="Logo/LogoSinFondo.png" alt="Logo 1529 Gastrobar"> 
-        </a>
-    </div>
-    
-    <nav class="navegacion">
-        <ul>
-            <li><a href="#">INICIO</a></li>
-            <span class="separador">|</span>
-            <li><a href="#">MENÚ</a></li>
-            <span class="separador">|</span>
-            <li><a href="#">RESERVAS</a></li>
-            <span class="separador">|</span>
-            <li><a href="#">EXPERIENCIA</a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="header-principal">
+        
+        <div class="logo-container">
+            <a href="#inicio">
+                <img src="Logo/LogoSinFondo.png" alt="Logo 1529 Gastrobar">
+            </a>
+        </div>
+        
+        <nav class="navegacion">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li class="separador">|</li>
+                <li><a href="#menu">Menú</a></li>
+                <li class="separador">|</li>
+                <li><a href="#reservas">Reservas</a></li>
+                <li class="separador">|</li>
+                <li><a href="#experiencia">Experiencia</a></li>
+            </ul>
+        </nav>
+        
+    </header>
 
     <section class="hero-principal">
         <div class="hero-contenido">
@@ -207,143 +203,122 @@
     </footer>
 
     <script>
-        const carrusel = document.getElementById('carrusel');
-        const flechaIzq = document.getElementById('flecha-izq');
-        const flechaDer = document.getElementById('flecha-der');
+            const carrusel = document.getElementById('carrusel');
+            const flechaIzq = document.getElementById('flecha-izq');
+            const flechaDer = document.getElementById('flecha-der');
 
-        // Función para mover el carrusel con las flechas
-        flechaDer.addEventListener('click', () => {
-            // Se desplaza 390px a la derecha (350px de la tarjeta + 40px de espacio)
-            carrusel.scrollBy({ left: 400, behavior: 'smooth' }); 
-        });
+            // Función para mover el carrusel con las flechas
+            flechaDer.addEventListener('click', () => {
+                carrusel.scrollBy({ left: 400, behavior: 'smooth' }); 
+            });
 
-        flechaIzq.addEventListener('click', () => {
-            // Se desplaza 390px a la izquierda
-            carrusel.scrollBy({ left: -400, behavior: 'smooth' }); 
-        });
+            flechaIzq.addEventListener('click', () => {
+                carrusel.scrollBy({ left: -400, behavior: 'smooth' }); 
+            });
 
-        // Función para ocultar/mostrar flechas según la posición
-        carrusel.addEventListener('scroll', () => {
-            // Si el usuario ya avanzó un poco, mostrar flecha izquierda
-            if (carrusel.scrollLeft > 20) {
-                flechaIzq.classList.add('visible');
-            } else {
-                flechaIzq.classList.remove('visible');
-            }
+            // Función para ocultar/mostrar flechas según la posición
+            carrusel.addEventListener('scroll', () => {
+                if (carrusel.scrollLeft > 20) {
+                    flechaIzq.classList.add('visible');
+                } else {
+                    flechaIzq.classList.remove('visible');
+                }
 
-            // Detectar si llegamos al final para ocultar la flecha derecha
-            let maxScroll = carrusel.scrollWidth - carrusel.clientWidth;
-            if (carrusel.scrollLeft >= maxScroll - 10) { 
-                flechaDer.classList.add('oculta');
-            } else {
-                flechaDer.classList.remove('oculta');
-            }
-        });
-
-        // ================= SCRIPT PARA ANIMAR EXPERIENCIAS =================
-        const tarjetasEvento = document.querySelectorAll('.tarjeta-evento');
-        
-        // Creamos un "observador" que vigila cuándo un elemento entra en la pantalla
-        const observadorExperiencias = new IntersectionObserver((entradas) => {
-            entradas.forEach(entrada => {
-                // Si el usuario ya bajó lo suficiente para ver la tarjeta (20% de ella)
-                if (entrada.isIntersecting) {
-                    entrada.target.classList.add('visible'); // La hace aparecer
+                let maxScroll = carrusel.scrollWidth - carrusel.clientWidth;
+                if (carrusel.scrollLeft >= maxScroll - 10) { 
+                    flechaDer.classList.add('oculta');
+                } else {
+                    flechaDer.classList.remove('oculta');
                 }
             });
-        }, { threshold: 0.2 }); // El 0.2 significa que se activa al ver el 20% de la tarjeta
 
-        // Le decimos al observador que vigile todas las tarjetas de eventos
-        // Y A LA VEZ le agregamos la función del clic para que giren en móvil
-        tarjetasEvento.forEach(tarjeta => {
-            observadorExperiencias.observe(tarjeta);
-            
-            // Evento de clic para el giro 3D
-            tarjeta.addEventListener('click', function() {
-                if (window.innerWidth < 768) {
-                    this.classList.toggle('is-flipped');
-                }
+            // ================= SCRIPT PARA ANIMAR EXPERIENCIAS =================
+            const tarjetasEvento = document.querySelectorAll('.tarjeta-evento');
+
+            const observadorExperiencias = new IntersectionObserver((entradas) => {
+                entradas.forEach(entrada => {
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add('visible'); 
+                    }
+                });
+            }, { threshold: 0.2 }); 
+
+            tarjetasEvento.forEach(tarjeta => {
+                observadorExperiencias.observe(tarjeta);
+
+                // NUEVO: Agregamos el evento click para girar (Solo funciona si es móvil)
+                tarjeta.addEventListener('click', () => {
+                    // Valida el ancho de la ventana para proteger la versión PC
+                    if(window.innerWidth <= 768) {
+                        tarjeta.classList.toggle('flipped');
+                    }
+                });
             });
-        });
 
-        
-        // ================= SCRIPT PARA ANIMAR MENÚ (EFECTO CASCADA) =================
-        const seccionMenu = document.querySelector('.menu-destacado');
-        const tarjetasPlatillo = document.querySelectorAll('.tarjeta-platillo');
+            // ================= SCRIPT PARA ANIMAR MENÚ (EFECTO CASCADA) =================
+            const seccionMenu = document.querySelector('.menu-destacado');
+            const tarjetasPlatillo = document.querySelectorAll('.tarjeta-platillo');
 
-        const observadorMenu = new IntersectionObserver((entradas) => {
-            entradas.forEach(entrada => {
-                // Cuando la sección del menú entra en pantalla
-                if (entrada.isIntersecting) {
-                    // Recorremos cada tarjeta y le damos un tiempo de espera basado en su posición
-                    tarjetasPlatillo.forEach((tarjeta, index) => {
-                        setTimeout(() => {
-                            tarjeta.classList.add('visible');
-                        }, index * 150); // 150 milisegundos de diferencia entre cada tarjeta
-                    });
-                    
-                    // Dejamos de observar la sección para que la animación solo ocurra una vez
-                    observadorMenu.unobserve(seccionMenu);
+            const observadorMenu = new IntersectionObserver((entradas) => {
+                entradas.forEach(entrada => {
+                    if (entrada.isIntersecting) {
+                        tarjetasPlatillo.forEach((tarjeta, index) => {
+                            setTimeout(() => {
+                                tarjeta.classList.add('visible');
+                            }, index * 150); 
+                        });
+                        observadorMenu.unobserve(seccionMenu);
+                    }
+                });
+            }, { threshold: 0.15 }); 
+
+            observadorMenu.observe(seccionMenu);
+
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header-principal');
+
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
+
+                if (scrollTop > lastScrollTop && scrollTop > 150) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
             });
-        }, { threshold: 0.15 }); // Se activa cuando el 15% de la sección es visible
 
-        // Le decimos al observador que vigile la sección completa del menú
-        observadorMenu.observe(seccionMenu);
+            // ================= SCRIPT PARA ANIMAR EL FOOTER =================
+            const partesFooter = document.querySelectorAll('.footer-parte-1, .footer-parte-2');
 
-            
-        let lastScrollTop = 0;
-        const header = document.querySelector('.header-principal');
+            const observadorFooter = new IntersectionObserver((entradas) => {
+                entradas.forEach(entrada => {
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add('visible');
+                        observadorFooter.unobserve(entrada.target);
+                    }
+                });
+            }, { threshold: 0.2 });
 
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            partesFooter.forEach(parte => {
+                observadorFooter.observe(parte);
+            });
 
-            // 1. Cambio de color (Transparente a Verde)
-            if (scrollTop > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.querySelector('.navegacion');
+
+            if(mobileMenu) {
+                mobileMenu.addEventListener('click', () => {
+                    navMenu.classList.toggle('activo');
+                });
             }
-
-            // 2. Esconder al bajar, mostrar al subir
-            if (scrollTop > lastScrollTop && scrollTop > 150) {
-                // Si bajamos, escondemos el menú empujándolo hacia arriba
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                // Si subimos, lo devolvemos a su posición original
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-
-        // ================= SCRIPT PARA ANIMAR EL FOOTER =================
-        const partesFooter = document.querySelectorAll('.footer-parte-1, .footer-parte-2');
-        
-        const observadorFooter = new IntersectionObserver((entradas) => {
-            entradas.forEach(entrada => {
-                if (entrada.isIntersecting) {
-                    entrada.target.classList.add('visible');
-                    // Dejamos de observar para que la animación solo ocurra una vez
-                    observadorFooter.unobserve(entrada.target);
-                }
-            });
-        }, { threshold: 0.2 }); // Se activa al ver el 20% del elemento
-
-        partesFooter.forEach(parte => {
-            observadorFooter.observe(parte);
-        });
-
-        
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navMenu = document.querySelector('.navegacion');
-
-        if(mobileMenu) {
-            mobileMenu.addEventListener('click', () => {
-                navMenu.classList.toggle('activo');
-            });
-        }
-   
     </script>
 
 </body>
