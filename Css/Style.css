@@ -374,7 +374,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
-    background-color: #D0BA8B; /* <--- AQUÍ ESTÁ APLICADO EL CAMBIO DE COLOR (CREMA/HUESO) */
+    background-color: #D0BA8B; 
 }
 .evento-texto h3 {
     font-family: 'CaslonSSK', serif;
@@ -456,13 +456,127 @@ body {
     object-fit: contain;
 }
 
+/* --- SECCIÓN NUESTRO ESPACIO --- */
+.ambiente-seccion {
+    /* 1. Fondo base hueso de tu marca */
+    background-color: var(--hueso-fondo); 
+    
+    /* 2. El patrón de líneas diagonales usando tu dorado con 20% de opacidad */
+    background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(208, 186, 139, 0.2), /* Color de la línea (Dorado) */
+        rgba(208, 186, 139, 0.2) 4px, /* Grosor de la línea */
+        transparent 1.5px,
+        transparent 30px /* Separación entre línea y línea */
+    );
+    
+    /* 3. Mantenemos el espaciado para que respire y se vea simétrico con el resto */
+    padding: 100px 20px 140px 20px; 
+    text-align: center;
+    font-family: inherit; 
+}
+
+.ambiente-seccion h2 {
+    color: #304033;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.ambiente-seccion p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+/* Contenedor de la escalera */
+.galeria-escalera {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    height: 550px; /* Altura total necesaria para que se note la escalera */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Estilo base para los marcos de las fotos */
+.foto-wrap {
+    width: 33%;
+    height: 400px; /* Altura de cada foto individual */
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    overflow: hidden;
+    
+    /* Preparación para la animación: las ocultamos y bajamos un poco */
+    opacity: 0; 
+    transform: translateY(80px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* --- Posiciones de la Escalera --- */
+.escalon-izq {
+    align-self: flex-end; /* Lo pega hacia abajo */
+}
+
+.escalon-centro {
+    align-self: center; /* Lo deja en el medio exacto */
+}
+
+.escalon-der {
+    align-self: flex-start; /* Lo pega hacia arriba */
+}
+
+/* Asegurar que la imagen se vea perfecta y centrada */
+.foto-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Llena el cuadro sin deformar */
+    object-position: center; /* Centra el punto de enfoque */
+    transition: transform 0.5s ease;
+}
+
+/* Efecto hover suave al pasar el mouse (opcional) */
+.foto-wrap img:hover {
+    transform: scale(1.05);
+}
+
+/* --- CLASE MÁGICA PARA LA ANIMACIÓN --- */
+/* Cuando el JS detecte la sección, le agregará esta clase "visible" */
+.galeria-escalera.visible .foto-wrap {
+    opacity: 1;
+    transform: translateY(0); /* Las devuelve a su posición original */
+}
+
+/* Retrasos escalonados para que aparezcan una por una */
+.galeria-escalera.visible .escalon-izq { transition-delay: 0.1s; }
+.galeria-escalera.visible .escalon-centro { transition-delay: 0.3s; }
+.galeria-escalera.visible .escalon-der { transition-delay: 0.5s; }
+
+/* --- RESPONSIVE: Para celulares --- */
+@media (max-width: 768px) {
+    .galeria-escalera {
+        flex-direction: column;
+        height: auto; /* Quitamos la altura fija en celular */
+        align-items: center;
+        gap: 20px;
+    }
+    .foto-wrap, .escalon-izq, .escalon-centro, .escalon-der {
+        width: 90%;
+        height: 350px;
+        align-self: center; /* En celular se apilan normal, la escalera no cabe */
+    }
+}
+
 /* =========================================
    SECCIÓN RESERVAS
 ========================================= */
 .reservas-seccion {
+    /* 3. LA LÍNEA: Una línea superior muy delgada con el color tierra de tus bordes */
+    border-top: 1px solid #c2b69e; 
     background-color: var(--hueso-fondo);
     padding: 120px 100px;
 }
+
 .reservas-contenedor {
     max-width: 900px;
     margin: 0 auto;
