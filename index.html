@@ -13,7 +13,7 @@
         
         <div class="logo-container">
             <a href="#inicio">
-                <img src="Logo/LogoSinFondo.png" alt="Logo 1529 Gastrobar">
+                <img src="Logo/LogoCompleto.png" alt="Logo 1529 Gastrobar">
             </a>
         </div>
         
@@ -57,9 +57,10 @@
 
     <section class="menu-destacado" id="menu">
         <div class="menu-contenedor">
-           <h2 class="titulo-menu">Nuestra Propuesta</h2>
+           <h2 class="titulo-menu">Recomendaciones</h2>
+
             <p style="text-align: center; color: #F4EFE6; font-family: 'AvantGardeBook', sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-top: -40px; margin-bottom: 50px; opacity: 0.7;">
-                Desliza para explorar ➔
+                Para esta semana ➔
             </p>
             
             <div class="envoltura-carrusel">
@@ -102,7 +103,7 @@
                     </div>
 
                     <div class="tarjeta-platillo">
-                        <img src="Platillos/IMG_5508.JPG.jpeg" alt="Cóctel 2">
+                        <img src="Platillos/Pesado.jpg" alt="Cóctel 2">
                         <div class="info-platillo">
                             <h3>Tarde de Verano</h3>
                             <p>Refrescante mezcla tropical con notas de mango, maracuyá y un toque de ron añejo.</p>
@@ -148,6 +149,74 @@
         </div>
         
         </section>
+        
+        <section class="eventos-seccion" id="eventos">
+        <div class="eventos-contenedor">
+            
+            <div class="evento-columna pasado">
+                <h2 class="titulo-evento">Eventos Pasados</h2>
+                <p class="subtitulo-evento">Revive nuestros mejores momentos.</p>
+                <div class="slot-imagen">
+                    <img src="Evento/Evento-SusanaMedina.jpg" alt="Evento Pasado">
+                    </div>
+            </div>
+            
+            <div class="linea-divisoria"></div>
+
+            <div class="evento-columna proximo">
+                <h2 class="titulo-evento">Eventos Próximos</h2>
+                <p class="subtitulo-evento">Lo que te espera en 1529.</p>
+                <div class="slot-imagen">
+                    <img src="Evento/Evento-Raul.jpg" alt="Evento Proximo">
+                    </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="reservas-seccion" id="reservas">
+        <div class="reservas-contenedor">
+            
+            <div class="reservas-texto">
+                <h2>Haz tu Reserva</h2>
+                <p>Asegura tu lugar y prepárate para una xperiencia gastronómica inolvidable.</p>
+            </div>
+
+            <form action="TU_METODO_DE_ENVIO" method="POST" enctype="multipart/form-data">
+                <div class="fila-form">
+                    <input type="text" placeholder="Tu Nombre" required>
+                    <input type="tel" placeholder="Número de Teléfono" required>
+                </div>
+                <div class="fila-form">
+                    <input type="date" required>
+                    <input type="time" required>
+                    <select required>
+                        <option value="" disabled selected>Número de Personas</option>
+                        <option value="1">1 Persona</option>
+                        <option value="2">2 Personas</option>
+                        <option value="3">3 Personas</option>
+                        <option value="4">4 Personas</option>
+                        <option value="5+">5 o más Personas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cantidad_mesas">¿Cuántas mesas necesitas?</label>
+                    <input type="number" id="cantidad_mesas" name="cantidad_mesas" min="1" max="20" placeholder="Ej: 2" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="foto_cedula">Adjunta una foto de tu Cédula de Identidad:</label>
+                    <input type="file" id="foto_cedula" name="foto_cedula" accept="image/png, image/jpeg, image/jpg, application/pdf" required>
+                    <small>Formatos permitidos: JPG, PNG o PDF.</small>
+                </div>
+
+                <button type="submit" class="btn-enviar-reserva">RESERVAR AHORA</button>
+            </form>
+
+        </div>
+    </section>
+
 
         <footer class="footer-principal" id="contacto">
         

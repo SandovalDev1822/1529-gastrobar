@@ -37,7 +37,7 @@ body {
 }
 
 /* =========================================
-   HEADER Y NAVEGACIÓN (ESCRITORIO / PC)
+   HEADER Y LOGO (MODIFICADO PARA SER MÁS GRANDE)
 ========================================= */
 .header-principal {
     background-color: transparent; 
@@ -46,7 +46,7 @@ body {
     justify-content: space-between; 
     align-items: center; 
     padding: 5px 100px; 
-    max-height: 75px; 
+    max-height: 100px; /* <--- Aumentado de 75 a 100px */
     position: fixed;
     top: 0;
     left: 0;
@@ -59,14 +59,20 @@ body {
     background-color: var(--verde-1529); 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
     padding: 5px 100px; 
-    max-height: 70px; 
+    max-height: 80px; /* <--- Aumentado de 70 a 80px */
     border-bottom: 1px solid transparent; 
 }
 
 .logo-container img {
-    max-height: 55px; 
+    max-height: 85px; /* <--- AUMENTADO (antes 55px) */
     width: auto;      
     display: block;
+    transition: all 0.4s ease; /* Transición suave */
+}
+
+/* Efecto para que el logo se achique un poco al hacer scroll */
+.header-principal.scrolled .logo-container img {
+    max-height: 60px; 
 }
 
 .navegacion {
@@ -387,6 +393,201 @@ body {
 }
 
 /* =========================================
+   SECCIÓN EVENTOS (PASADOS / PRÓXIMOS)
+========================================= */
+.eventos-seccion {
+    background-color: var(--verde-1529); 
+    padding: 100px 100px;
+    color: var(--blanco);
+}
+.eventos-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+.evento-columna {
+    flex: 1;
+    text-align: center;
+}
+.linea-divisoria {
+    width: 2px;
+    height: 350px;
+    background-color: var(--dorado-hover);
+    opacity: 0.3;
+}
+.titulo-evento {
+    font-family: 'CaslonSSK', serif;
+    font-size: 38px;
+    color: var(--dorado-hover);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+.subtitulo-evento {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 15px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+/* El marco distinguible para los slots vacíos */
+.slot-imagen {
+    width: 100%;
+    height: 400px;
+    border: 2px dashed var(--dorado-hover); 
+    border-radius: 12px;
+    background-color: rgba(208, 186, 139, 0.05); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.slot-imagen:hover {
+    background-color: rgba(208, 186, 139, 0.15);
+    border-style: solid;
+}
+/* Estilo para cuando insertes la imagen real */
+.slot-imagen img {
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+}
+
+/* =========================================
+   SECCIÓN RESERVAS
+========================================= */
+.reservas-seccion {
+    background-color: var(--hueso-fondo);
+    padding: 120px 100px;
+}
+.reservas-contenedor {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--hueso-tarjeta);
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--dorado-hover);
+    text-align: center;
+}
+.reservas-texto h2 {
+    font-family: 'CaslonSSK', serif;
+    font-size: 45px;
+    color: var(--verde-1529);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+.reservas-texto p {
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 16px;
+    color: #2C2C2C;
+    margin-bottom: 40px;
+}
+.formulario-reservas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.fila-form {
+    display: flex;
+    gap: 20px;
+}
+.fila-form input, .fila-form select {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 15px;
+    background-color: var(--blanco);
+    color: var(--verde-1529);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.fila-form input:focus, .fila-form select:focus {
+    border-color: var(--dorado-hover);
+}
+.btn-enviar-reserva {
+    background-color: #A34A33;
+    color: var(--blanco);
+    border: none;
+    padding: 18px;
+    font-family: 'AvantGardeBook', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+.btn-enviar-reserva:hover {
+    background-color: var(--dorado-hover);
+    color: #000;
+    transform: translateY(-3px);
+}
+/* Contenedor principal de cada pregunta */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+/* Estilo para los títulos (Labels) */
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #304033; /* Verde oscuro inspirado en tu barra de navegación */
+    font-weight: 600;
+}
+
+/* Estilos para el campo de número y el botón de subir archivo */
+.form-group input[type="number"],
+.form-group input[type="file"] {
+    padding: 12px 15px;
+    border: 1px solid #c2b69e; /* Tono tierra/dorado suave para el borde */
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: #fcfbf8; /* Un crema un poco más claro que el fondo para que resalte */
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto cuando el usuario selecciona el campo para interactuar */
+.form-group input[type="number"]:focus,
+.form-group input[type="file"]:focus {
+    outline: none;
+    border-color: #304033; /* Cambia a verde oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(48, 64, 51, 0.2); /* Sombra suave para resaltar */
+}
+
+/* Ajustes específicos para el botón interno que genera el navegador en el input de archivo */
+.form-group input[type="file"]::file-selector-button {
+    background-color: #304033;
+    color: #fdfbf7;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background-color: #4a5c4a; /* Verde ligeramente más claro al pasar el mouse */
+}
+
+/* Estilo para el texto pequeñito de ayuda */
+.form-group small {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+}
+
+/* =========================================
    SECCIÓN FOOTER
 ========================================= */
 .footer-principal {
@@ -583,4 +784,20 @@ body {
     .evento-texto p {
         font-size: 17px;
     }
+
+    /* Ajustes del Logo en móvil (para que no ocupe toda la pantalla) */
+    .logo-container img { max-height: 55px; } 
+    .header-principal.scrolled .logo-container img { max-height: 50px; }
+
+    /* Ajustes Sección Eventos en Móvil */
+    .eventos-seccion { padding: 60px 20px; }
+    .eventos-contenedor { flex-direction: column; gap: 40px; }
+    .linea-divisoria { width: 80%; height: 2px; } /* La línea se vuelve horizontal */
+    .slot-imagen { height: 300px; }
+
+    /* Ajustes Sección Reservas en Móvil */
+    .reservas-seccion { padding: 60px 20px; }
+    .reservas-contenedor { padding: 40px 20px; }
+    .reservas-texto h2 { font-size: 35px; }
+    .fila-form { flex-direction: column; gap: 15px; } /* Los campos se apilan uno sobre otro */
 }
