@@ -1,6 +1,6 @@
-/* =========================================
+/* 
    1. IMPORTAR FUENTES LOCALES
-========================================= */
+ */
 @font-face {
     font-family: 'AvantGardeBook';
     src: url('../Fuentes/ITCAvantGardeStd-Bk.otf') format('opentype');
@@ -46,7 +46,7 @@ body {
     justify-content: space-between; 
     align-items: center; 
     padding: 5px 100px; 
-    max-height: 100px; /* <--- Aumentado de 75 a 100px */
+    max-height: 100px; 
     position: fixed;
     top: 0;
     left: 0;
@@ -59,18 +59,18 @@ body {
     background-color: var(--verde-1529); 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
     padding: 5px 100px; 
-    max-height: 80px; /* <--- Aumentado de 70 a 80px */
+    max-height: 80px; 
     border-bottom: 1px solid transparent; 
 }
 
 .logo-container img {
-    max-height: 85px; /* <--- AUMENTADO (antes 55px) */
+    max-height: 85px; 
     width: auto;      
     display: block;
-    transition: all 0.4s ease; /* Transición suave */
+    transition: all 0.4s ease; 
 }
 
-/* Efecto para que el logo se achique un poco al hacer scroll */
+
 .header-principal.scrolled .logo-container img {
     max-height: 60px; 
 }
@@ -431,7 +431,7 @@ body {
     margin-bottom: 30px;
     opacity: 0.8;
 }
-/* El marco distinguible para los slots vacíos */
+
 .slot-imagen {
     width: 100%;
     height: 400px;
@@ -449,28 +449,28 @@ body {
     background-color: rgba(208, 186, 139, 0.15);
     border-style: solid;
 }
-/* Estilo para cuando insertes la imagen real */
+
 .slot-imagen img {
     width: 100%;
     height: 90%;
     object-fit: contain;
 }
 
-/* --- SECCIÓN NUESTRO ESPACIO --- */
+
 .ambiente-seccion {
-    /* 1. Fondo base hueso de tu marca */
+
     background-color: var(--hueso-fondo); 
     
-    /* 2. El patrón de líneas diagonales usando tu dorado con 20% de opacidad */
+   
     background-image: repeating-linear-gradient(
         -45deg,
-        rgba(208, 186, 139, 0.2), /* Color de la línea (Dorado) */
-        rgba(208, 186, 139, 0.2) 4px, /* Grosor de la línea */
+        rgba(208, 186, 139, 0.2),
+        rgba(208, 186, 139, 0.2) 4px, 
         transparent 1.5px,
-        transparent 30px /* Separación entre línea y línea */
+        transparent 30px 
     );
     
-    /* 3. Mantenemos el espaciado para que respire y se vea simétrico con el resto */
+   
     padding: 100px 20px 140px 20px; 
     text-align: center;
     font-family: inherit; 
@@ -489,81 +489,80 @@ body {
     font-style: italic;
 }
 
-/* Contenedor de la escalera */
+
 .galeria-escalera {
     display: flex;
     justify-content: center;
     gap: 30px;
-    height: 550px; /* Altura total necesaria para que se note la escalera */
+    height: 550px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* Estilo base para los marcos de las fotos */
+
 .foto-wrap {
     width: 33%;
-    height: 400px; /* Altura de cada foto individual */
+    height: 400px; 
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     overflow: hidden;
     
-    /* Preparación para la animación: las ocultamos y bajamos un poco */
+   
     opacity: 0; 
     transform: translateY(80px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* --- Posiciones de la Escalera --- */
+
 .escalon-izq {
-    align-self: flex-end; /* Lo pega hacia abajo */
+    align-self: flex-end; 
 }
 
 .escalon-centro {
-    align-self: center; /* Lo deja en el medio exacto */
+    align-self: center;
 }
 
 .escalon-der {
-    align-self: flex-start; /* Lo pega hacia arriba */
+    align-self: flex-start; 
 }
 
-/* Asegurar que la imagen se vea perfecta y centrada */
+
 .foto-wrap img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Llena el cuadro sin deformar */
-    object-position: center; /* Centra el punto de enfoque */
+    object-fit: cover; 
+    object-position: center;
     transition: transform 0.5s ease;
 }
 
-/* Efecto hover suave al pasar el mouse (opcional) */
+
 .foto-wrap img:hover {
     transform: scale(1.05);
 }
 
-/* --- CLASE MÁGICA PARA LA ANIMACIÓN --- */
-/* Cuando el JS detecte la sección, le agregará esta clase "visible" */
+
 .galeria-escalera.visible .foto-wrap {
     opacity: 1;
-    transform: translateY(0); /* Las devuelve a su posición original */
+    transform: translateY(0);
 }
 
-/* Retrasos escalonados para que aparezcan una por una */
+
 .galeria-escalera.visible .escalon-izq { transition-delay: 0.1s; }
 .galeria-escalera.visible .escalon-centro { transition-delay: 0.3s; }
 .galeria-escalera.visible .escalon-der { transition-delay: 0.5s; }
 
-/* --- RESPONSIVE: Para celulares --- */
+
 @media (max-width: 768px) {
     .galeria-escalera {
         flex-direction: column;
-        height: auto; /* Quitamos la altura fija en celular */
+        height: auto;
         align-items: center;
         gap: 20px;
     }
     .foto-wrap, .escalon-izq, .escalon-centro, .escalon-der {
         width: 90%;
         height: 350px;
-        align-self: center; /* En celular se apilan normal, la escalera no cabe */
+        align-self: center; 
     }
 }
 
@@ -571,7 +570,7 @@ body {
    SECCIÓN RESERVAS
 ========================================= */
 .reservas-seccion {
-    /* 3. LA LÍNEA: Una línea superior muy delgada con el color tierra de tus bordes */
+    
     border-top: 1px solid #c2b69e; 
     background-color: var(--hueso-fondo);
     padding: 120px 100px;
@@ -642,42 +641,42 @@ body {
     color: #000;
     transform: translateY(-3px);
 }
-/* Contenedor principal de cada pregunta */
+
 .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
 }
 
-/* Estilo para los títulos (Labels) */
+
 .form-group label {
     font-size: 16px;
     margin-bottom: 8px;
-    color: #304033; /* Verde oscuro inspirado en tu barra de navegación */
+    color: #304033; 
     font-weight: 600;
 }
 
-/* Estilos para el campo de número y el botón de subir archivo */
+
 .form-group input[type="number"],
 .form-group input[type="file"] {
     padding: 12px 15px;
-    border: 1px solid #c2b69e; /* Tono tierra/dorado suave para el borde */
+    border: 1px solid #c2b69e; 
     border-radius: 4px;
     font-size: 15px;
-    background-color: #fcfbf8; /* Un crema un poco más claro que el fondo para que resalte */
+    background-color: #fcfbf8;
     color: #333;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efecto cuando el usuario selecciona el campo para interactuar */
+
 .form-group input[type="number"]:focus,
 .form-group input[type="file"]:focus {
     outline: none;
-    border-color: #304033; /* Cambia a verde oscuro al hacer clic */
-    box-shadow: 0 0 5px rgba(48, 64, 51, 0.2); /* Sombra suave para resaltar */
+    border-color: #304033;
+    box-shadow: 0 0 5px rgba(48, 64, 51, 0.2);
 }
 
-/* Ajustes específicos para el botón interno que genera el navegador en el input de archivo */
+
 .form-group input[type="file"]::file-selector-button {
     background-color: #304033;
     color: #fdfbf7;

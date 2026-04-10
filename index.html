@@ -346,7 +346,7 @@
                 });
             });
 
-            // SCRIPT PARA ANIMAR MENÚ (CASCADA) 
+            // SCRIPT PARA ANIMAR MENÚ 
             const seccionMenu = document.querySelector('.menu-destacado');
             const tarjetasPlatillo = document.querySelectorAll('.tarjeta-platillo');
 
@@ -386,7 +386,7 @@
                 lastScrollTop = scrollTop;
             });
 
-            // SCRIPT PARA ANIMAR EL FOOTER =================
+            // SCRIPT PARA ANIMAR EL FOOTER 
             const partesFooter = document.querySelectorAll('.footer-parte-1, .footer-parte-2');
 
             const observadorFooter = new IntersectionObserver((entradas) => {
@@ -413,22 +413,22 @@
 
             
             document.addEventListener("DOMContentLoaded", function() {
-                // Buscamos la sección de la escalera
+                
                 const escalera = document.querySelector('.galeria-escalera');
 
-                // Creamos un "vigilante" (Observer)
+                
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
-                        // Si la sección entra en la pantalla...
+                        
                         if (entry.isIntersecting) {
-                            // Le agregamos la clase que activa el CSS
+                            
                             escalera.classList.add('visible');
-                            // IMPORTANTE: Dejamos de vigilar para que no se repita
+                            
                             observer.unobserve(entry.target); 
                         }
                     });
                 }, {
-                    threshold: 0.2 // Se activa cuando al menos el 20% de las fotos ya son visibles
+                    threshold: 0.2 
                 });
 
                 if (escalera) {
